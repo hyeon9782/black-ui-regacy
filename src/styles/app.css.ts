@@ -1,7 +1,6 @@
 import { globalStyle } from "@vanilla-extract/css";
 
-globalStyle("body", {
+globalStyle("html, body", {
   margin: 0,
   height: "100%",
-  backgroundColor: "red",
 });
