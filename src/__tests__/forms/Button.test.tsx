@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Button from "../../components/forms/Button";
+import Button from "../../components/atoms/button/Button";
 
 test("Render Button", async () => {
   render(<Button />);

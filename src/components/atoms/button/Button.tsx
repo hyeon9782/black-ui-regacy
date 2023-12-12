@@ -1,4 +1,4 @@
-import { basicButton } from "../../styles/button.css";
+import { basicButton } from "../../../styles/button.css";
 
 type ButtonColor = "black" | "blue" | "red";
 
@@ -22,7 +22,7 @@ const Button = ({
   onClick,
 }: ButtonProps) => {
   return (
-    <button onClick={onClick} className={basicButton}>
+    <button onClick={onClick} className={basicButton} disabled>
       {label}
     </button>
   );

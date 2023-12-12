@@ -1,4 +1,4 @@
-import Button from "./components/forms/Button";
+import Button from "./components/atoms/button/Button";
 import { container } from "./styles/common.css";
 
 function App() {
