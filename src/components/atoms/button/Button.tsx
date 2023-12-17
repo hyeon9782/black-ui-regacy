@@ -1,33 +1,58 @@
-import { basicButton } from "../../../styles/button.css";
+import { PropsWithChildren, ReactElement } from "react";
+import { Tokens } from "@/src/tokens";
 
-type ButtonColor = "black" | "blue" | "red";
+import { Box } from "../Box";
+import { Hover } from "../Hover";
+import { Stack } from "../Stack";
+import * as styles from "./button.css";
 
-type ButtonSize = "sm" | "md" | "lg";
+export interface ButtonProps {
+  size?: "lg" | "md" | "sm" | "xs";
+  width?: keyof Tokens["space"];
+  variant?: "solid" | "outline";
+  radius?: "full" | "md";
+  color?: "black" | "brand" | "gray" | "blue" | "red" | "green" | "orange";
+  disabled?: boolean;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
+}
 
-type ButtonVariant = "solid" | "outline";
-
-type ButtonProps = {
-  label: string;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  variant?: ButtonVariant;
-  onClick: () => void;
-};
-
-const Button = ({
-  label,
-  color = "black",
+export const Button = ({
   size = "md",
+  width = "full",
   variant = "solid",
-  onClick,
-}: ButtonProps) => {
+  radius = "full",
+  color = "black",
+  disabled = false,
+  leftIcon,
+  rightIcon,
+  children,
+}: PropsWithChildren<ButtonProps>) => {
+  // const iconSize =
+  //   size === 'lg' || size === 'md' ? '4' : size === 'sm' ? '3.5' : '3';
+
   return (
-    <button onClick={onClick} className={basicButton} disabled>
-      {label}
-    </button>
+    <Box
+      className={styles.root({ size, variant, radius, color, disabled })}
+      width={width}
+    >
+      <Hover radius={radius} color="white" />
+      <Stack
+        direction="horizontal"
+        space={size === "lg" || size === "md" ? "2" : "1.5"}
+      >
+        {leftIcon && (
+          <Box display="flex" justifyContent="center" alignItems="center">
+            {leftIcon}
+          </Box>
+        )}
+        {children}
+        {rightIcon && (
+          <Box display="flex" justifyContent="center" alignItems="center">
+            {rightIcon}
+          </Box>
+        )}
+      </Stack>
+    </Box>
   );
 };
-
-function selectedStyles(color, size, variant) {}
-
-export default Button;
